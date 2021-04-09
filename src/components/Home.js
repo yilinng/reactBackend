@@ -13,6 +13,7 @@ const Home = () => {
   return (
     <div className="home container">
         <div className="row">
+            <h1>test git</h1>
             <PieChart error={err} isPending={isPendings} posts={posts}/>
                     { err && <div>{ err }</div> }
             { isPendings && <div className="center-align">
