@@ -81,7 +81,6 @@ const PieChart = ({error, isPending, posts}) => {
   return (
         <div className="pie col s6"
         style={{
-                border: '1px solid rgba(0, 0, 0, 0.05)',
                 marginTop: '3%'
               }}>
            <div className='header' style={{textAlign: 'center'}}>

@@ -9,9 +9,25 @@
 }
 
 .signin > form > input {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    height: 30px;
 }
 
 .signin_link:hover {
     text-decoration: underline;
 }
+
+.signin h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.signin button {
+    width:auto;
+    height: 30px;
+}
+
+.signin span {
+    margin-top: 20px;
+    font-size: 20px;
+} 

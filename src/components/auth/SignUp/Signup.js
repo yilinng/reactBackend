@@ -27,10 +27,10 @@ const Signup = () => {
         <div className="signup">
             <form>
                 <h1>Sign up</h1>
-                    <input ref={emailRef} type="email" />
-                    <input ref={passwordRef} type="password" />
+                    <input ref={emailRef} type="email" placeholder="input email..."/>
+                    <input ref={passwordRef} type="password" placeholder="input password..."/>
                     <button onClick={signUp}>Sign up </button>
-                <h6>Aready login in? <Link className="signup__link" to="/signin">Sign in</Link></h6>
+                <span>Aready login in? <Link className="signup__link" to="/signin">Sign in</Link></span>
             </form>
         </div>
     )}

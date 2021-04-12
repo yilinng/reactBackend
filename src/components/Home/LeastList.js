@@ -1,22 +1,36 @@
-import { useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import StarIcon from '@material-ui/icons/Star';
+
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: '100%',
+        maxWidth: 360,
+        backgroundColor: theme.palette.background.paper,
+      },
+}));
 
 const LeastList = ({posts}) => {
 
+    const classes = useStyles();
+
+    posts.sort((a, b) => parseFloat(b.count) - parseFloat(a.count));
 
         return (
-            <div className="col s5"
-             style={{marginTop: '5%'}}>
-                <ul className="collection with-header">
-                <li className="collection-header"><h4>First Names</h4></li>
-            {posts.map(post => {
-                <li className="collection-item">
-                <div key={post.id}>
-                    {post.color}<i className="material-icons">send</i>
-                </div>
-                </li>
-            })}
-                </ul>
-            </div>
+            <List component="nav" className={classes.root} aria-label="contacts" style={{border:'1px solid #eee'}}>
+            {posts.map(post => 
+                <ListItem button key={post.id}>
+                    <ListItemIcon>
+                    <StarIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary={post.color}/>
+                </ListItem>
+            )}
+            </List>
         );
     }
 

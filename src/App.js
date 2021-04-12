@@ -33,7 +33,7 @@ function App() {
     <Router>
     <div className="App">
         <NavBar user={user}/>
-      <div className="content">
+      <div className="content" style={{margin:'3% auto'}}>
           <Switch>
             <Route exact path="/" component={Home}/>
           {user &&  <Route path="/create" component={Create}/>}

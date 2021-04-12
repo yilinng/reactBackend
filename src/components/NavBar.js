@@ -1,15 +1,24 @@
 import { useState} from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { auth } from './../firebase';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import MenuIcon from '@material-ui/icons/Menu';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
+import DirectionsBikeOutlinedIcon from '@material-ui/icons/DirectionsBikeOutlined';
+import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
+import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const useStyles = makeStyles({
   list: {
@@ -20,10 +29,24 @@ const useStyles = makeStyles({
   },
 });
 
+const useNavStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
+
 
 const NavBar = ({user}) => {
 
+  const matches = useMediaQuery('(min-width:600px)');
   const classes = useStyles();
+  const classNavs = useNavStyles();
 
   const [state, setState] = useState({
     top: false,
@@ -52,22 +75,34 @@ const NavBar = ({user}) => {
                 <>
                 <NavLink to="/create" style={{ textDecoration: 'none', color: 'unset' }} >
                   <ListItem button>
+                  <ListItemIcon>
+                  <AddOutlinedIcon/>
+                  </ListItemIcon>
                     <ListItemText primary="Create"/>
                   </ListItem>
                 </NavLink>
-                  <ListItemText>
-                    <button onClick={() => auth.signOut()}>Sign out</button>
-                  </ListItemText>
+                <ListItem button onClick={() => auth.signOut()}>
+                <ListItemIcon>
+                  <ExitToAppOutlinedIcon/>
+                  </ListItemIcon>
+                  <ListItemText primary="Sign out"/>
+                  </ListItem>
                 </>
                 ):(
                 <>
                 <NavLink to="/signin" style={{ textDecoration: 'none', color: 'unset' }} >
                   <ListItem button>
+                  <ListItemIcon>
+                  <DirectionsBikeOutlinedIcon/>
+                  </ListItemIcon>
                     <ListItemText primary="Signin"/>
                   </ListItem>
                 </NavLink>
                 <NavLink to="/signup" style={{ textDecoration: 'none', color: 'unset' }} >
                    <ListItem button>
+                   <ListItemIcon>
+                    < PersonAddOutlinedIcon/>
+                  </ListItemIcon>
                     <ListItemText primary="Signup"/>
                   </ListItem>
                 </NavLink>
@@ -78,47 +113,47 @@ const NavBar = ({user}) => {
   );
 
     return (
-        <div className="sidebar">
-          {['left'].map((anchor) => (
+      
+      <div className={classNavs.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton edge="start" className={classNavs.menuButton} color="inherit" aria-label="menu">
+            {['left'].map((anchor) => (
             <>
-              <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+              <div className="toggleMenu">
+              <MenuIcon fontSize="large" onClick={toggleDrawer(anchor, true)}/>
               <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
                 {list(anchor)}
               </Drawer>
+              </div>
             </>
           ))}
-        </div>
-      /*
-      <nav className="nav-wrapper light-blue">
-        <div className="links container">
-          <Link to="/" className="brand-logo">he Dojo Blog</Link>
-          <span data-target="mobile-demo" className="sidenav-trigger hide-on-large-only">
-          <i className="material-icons">menu</i>
-          </span>
-            <ul className="right hide-on-med-and-down">
-              { user ? (
-                <>
-                  <li>
-                    <Link to="/create">New Blog</Link>
-                  </li>
-                  <li>
-                    <button onClick={() => auth.signOut()}>Sign out</button>
-                  </li>
-                </>
-                ):(
-                <>
-                  <li>
-                    <Link to="/signin">Sign In</Link>
-                  </li>
-                  <li>
-                    <Link to="/signup">Sign Up</Link>
-                  </li>
-               </>
-                )}
-            </ul>
-        </div>
-      </nav>
-      */
+          </IconButton>
+          <Typography variant="h6" className={classNavs.title} style={{color:'white'}}>
+          <Link to="/"  style={{color:'white',textDecoration: 'none'}}>chart Blog</Link>
+          </Typography>
+          {user ?(
+          <>
+            <Button color="inherit" style={ matches ? { display:'block'} : {display:'none'}}>
+            <Link to="/create"  style={{color:'white',textDecoration: 'none'}}>New one</Link>
+          </Button>
+          <Button color="inherit" style={ matches ? { display:'block'} : {display:'none'}}>
+            <span style={{color:'white'}} onClick={() => auth.signOut()}>Sign out</span>
+          </Button>
+          </>
+          ):(
+            <>
+            <Button color="inherit" style={ matches ? { display:'block'} : {display:'none'}}>
+            <Link to="/signin"  style={{color:'white',textDecoration: 'none'}}>Sign In</Link>
+          </Button>
+          <Button color="inherit" style={ matches ? { display:'block'} : {display:'none'}}>
+            <Link to="/signup" style={{color:'white',textDecoration: 'none'}}>Sign Up</Link>
+          </Button>
+            </>
+          )}
+        </Toolbar>
+      </AppBar>
+    </div>
     );
   }
 
