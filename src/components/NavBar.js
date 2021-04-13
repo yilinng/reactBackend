@@ -1,8 +1,8 @@
-import { useState} from "react";
+import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { auth } from './../firebase';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
@@ -130,7 +130,7 @@ const NavBar = ({user}) => {
           ))}
           </IconButton>
           <Typography variant="h6" className={classNavs.title} style={{color:'white'}}>
-          <Link to="/"  style={{color:'white',textDecoration: 'none'}}>chart Blog</Link>
+          <Link to="/"  style={{color:'white',textDecoration: 'none'}}>pizza backend admin</Link>
           </Typography>
           {user ?(
           <>

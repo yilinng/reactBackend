@@ -30,7 +30,7 @@ const Signup = () => {
                     <input ref={emailRef} type="email" placeholder="input email..."/>
                     <input ref={passwordRef} type="password" placeholder="input password..."/>
                     <button onClick={signUp}>Sign up </button>
-                <span>Aready login in? <Link className="signup__link" to="/signin">Sign in</Link></span>
+                <span>Aready registered? <Link className="signup__link" to="/signin">Sign in</Link></span>
             </form>
         </div>
     )}
