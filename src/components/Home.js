@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
     const classes = useStyles();
-    const { err, isPendings, data: posts } = useFetch('http://localhost:4000/posts')
+    const { err, isPendings, data: posts } = useFetch('http://localhost:5000/posts')
     const matches = useMediaQuery('(min-width:600px)');
 
   return (
@@ -25,7 +25,7 @@ const Home = () => {
       direction="row"
       justify="center"
       alignItems="baseline"
-        style={ matches ? { margin:'auto'} : {margin:'auto'}}>
+      >
         <Grid item xs={10} sm={4}>
           <div style={{ border:'1px solid #eee', paddingBottom:'5px'}}>
             <PieChart error={err} isPending={isPendings} posts={posts}/>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import UpdateItem from "./create/UpdateItem";
@@ -6,17 +6,14 @@ import UpdateItem from "./create/UpdateItem";
 const Create = () => {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
-  const [ingredients, setIngredients] = useState([]);
-  
-  const [items, setItems] = useState([
-    {name:"Grapefruit" , uniqueId: 144},
-    {name:"Lime", uniqueId: 222244}, 
-    {name:"Coconut", uniqueId: 35677}, 
-    {name:"mango", uniqueId: 4345567},
-    {name:"noodle", uniqueId: 1367}
-  ]);
-  
+  const [ingredients, setIngredients] = useState([]);  
+  const [items, setItems] = useState([]);
   const history = useHistory();
+
+  const onAdd = (formState) => {
+    console.log('I will submit my ChildForm Input State: ' + formState);
+    setItems(formState);
+  }
 
   const handleSelected = (e) => {
     let value = Array.from(e.target.selectedOptions, option => option.value);
@@ -38,6 +35,9 @@ const Create = () => {
     })
   }
 
+  useEffect(() => {
+    console.log(items);
+  }, [items])
   
   return (
     
@@ -67,13 +67,13 @@ const Create = () => {
         />
           <label style={{fontSize:'30px'}}>ingredients:</label>  
           <select multiple={true} value={ingredients} onChange={(e)=> handleSelected(e)}>
-            {items.length ? items.map(item => 
+            {items.length ? items.map((item, index) => 
                 <option
-                 key={item.uniqueId}                 
+                 key={item}                 
                  style={{lineHeight: '2em' ,fontSize: '20px'}}
-                  value={item.name}
+                  value={item}
                 >
-                {item.name}
+                {item}
                 </option>             
             ): 
             <option>not option</option>
@@ -88,9 +88,9 @@ const Create = () => {
             <span style={{fontSize:'15px'}}>notselect</span>
           )}
           </div>
-        <button>Add Blog</button>
+        <button style={{marginTop:"10%"}}>Add Blog</button>
       </form>
-      <UpdateItem/>
+      <UpdateItem onAdd={onAdd}/>
       </Grid>
       
   );

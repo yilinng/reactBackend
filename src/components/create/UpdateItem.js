@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react";
 
-const UpdateItem = () => {
+const UpdateItem = (props) => {
     const [newItem, setNewItem] = useState("");
     const [items, setItems] = useState([
         "Grapefruit" ,
@@ -12,19 +12,20 @@ const UpdateItem = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setItems([...items, newItem])
+        setItems([...items, newItem]);
         setNewItem("");
     }
 
     useEffect(() => {
         console.log(items);
-    },[items]);
+        props.onAdd(items);
+    },[items, props]);
 
     return(
-        <div className="upItem" style={{margin:"20px auto"}}>
+        <div className="upItem" style={{margin:"10% auto"}}>
             <form onSubmit={handleSubmit}> 
                 <input type="text" value={newItem} onChange={(e)=>setNewItem(e.target.value)} required/>
-                <button>add new item</button>
+                <button>add new ingredient</button>
             </form>
         </div>
     )  

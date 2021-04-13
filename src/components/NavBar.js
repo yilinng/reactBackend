@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { auth } from './../firebase';
+import { useHistory } from "react-router-dom";
 import clsx from 'clsx';
 import { makeStyles} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -43,7 +44,7 @@ const useNavStyles = makeStyles((theme) => ({
 
 
 const NavBar = ({user}) => {
-
+  const history = useHistory();
   const matches = useMediaQuery('(min-width:600px)');
   const classes = useStyles();
   const classNavs = useNavStyles();
@@ -54,6 +55,11 @@ const NavBar = ({user}) => {
     bottom: false,
     right: false,
   });
+
+  const handleToHome= () => {
+    auth.signOut();
+    history.push('/');
+  }
    const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -81,7 +87,7 @@ const NavBar = ({user}) => {
                     <ListItemText primary="Create"/>
                   </ListItem>
                 </NavLink>
-                <ListItem button onClick={() => auth.signOut()}>
+                <ListItem button onClick={handleToHome}>
                 <ListItemIcon>
                   <ExitToAppOutlinedIcon/>
                   </ListItemIcon>
@@ -138,7 +144,7 @@ const NavBar = ({user}) => {
             <Link to="/create"  style={{color:'white',textDecoration: 'none'}}>New one</Link>
           </Button>
           <Button color="inherit" style={ matches ? { display:'block'} : {display:'none'}}>
-            <span style={{color:'white'}} onClick={() => auth.signOut()}>Sign out</span>
+            <span style={{color:'white'}} onClick={handleToHome}>Sign out</span>
           </Button>
           </>
           ):(
