@@ -19,7 +19,7 @@ const UpdateItem = (props) => {
     }
 
     useEffect(() => {
-        console.log(items);
+        //console.log(items);
         props.onAdd(items);
     },[items, props]);
 

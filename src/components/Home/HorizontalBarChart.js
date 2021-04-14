@@ -14,7 +14,7 @@ const options = {
 }
 
 
-const HorizontalBarChart = ({error, isPending, posts}) => {
+const HorizontalBarChart = ({posts}) => {
 
   const [dataToChart, setDataToChart] = useState({});
 
@@ -60,11 +60,6 @@ const HorizontalBarChart = ({error, isPending, posts}) => {
 
   return (
     <div className='horizontal'>
-      <h3 className='title' style={{textAlign:'center'}}>Horizontal Bar Chart</h3>
-        { error && <div>{ error }</div> }
-        { isPending && <div className="center-align">
-            <h3>Loading...</h3>
-        </div> }
       {posts && <HorizontalBar data={dataToChart} options={options}/>}
     </div>
   );

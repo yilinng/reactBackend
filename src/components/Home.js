@@ -9,16 +9,10 @@ import orderList from './../data/order.json';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
-    [theme.breakpoints.between('sm', 'md')]: {
-      backgroundColor: '#eee',
-    },
+    flexGrow: 1
   },
-  gridchange:{
-    [theme.breakpoints.between('sm', 'md')]: {
-      width: '400px',
-      heigth:'300px',
-    },
+  control:{
+    padding: theme.spacing(2),
   }
 }));
 
@@ -41,14 +35,15 @@ const Home = () => {
           direction="row"
           justify="space-evenly"
           alignItems="center"
+          className={classes.control}
         >
-          <Grid item xs={12} sm={4} className={classes.gridchange}>
+          <Grid item xs={12} md={4}>
             <div style={{ border:'1px solid #eee', padding:'5px'}}>
               <PieChart posts={orders}/>
             </div>        
           </Grid>
 
-          <Grid item xs={9} sm={4}
+          <Grid item xs={9} md={4}
           style={ matches ? { margin:'3% 1%'} : {margin:'1% auto'}}>
               {orders && <LeastList orders={orders}/>}
           </Grid>
@@ -57,13 +52,13 @@ const Home = () => {
           direction="row"
           justify="space-evenly"
           alignItems="center"
+          className={classes.control}
         >  
-
-          <Grid item xs={11} sm={4}>
+          <Grid item xs={11} md={4}>
             <HorizontalBarChart posts={orders}/>
           </Grid>
 
-          <Grid item xs={9} sm={4}>
+          <Grid item xs={9} md={4}>
             {orders && <LeastList orders={orders}/>}
           </Grid>
 

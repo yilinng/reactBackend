@@ -11,7 +11,7 @@ const Create = () => {
   const history = useHistory();
 
   const onAdd = (formState) => {
-    console.log('I will submit my ChildForm Input State: ' + formState);
+    //console.log('I will submit my ChildForm Input State: ' + formState);
     setItems(formState);
   }
 
