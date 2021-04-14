@@ -1,0 +1,40 @@
+{
+    "posts": [
+      {
+        "id": 1,
+        "title": "pizza margherita",
+        "price": 200,
+        "count": 5
+      },
+      {
+        "id": 2,
+        "title": "pizza with italian sausage",
+        "price": 210,
+        "count": 7
+      },
+      {
+        "id": 3,
+        "title": "pizza with ricotta cheese",
+        "price": 220,
+        "count": 11
+      },
+      {
+        "id": 4,
+        "title": "pasta and bacon in cream",
+        "price": 110,
+        "count": 10
+      },
+      {
+        "id": 5,
+        "title": "pasta and sauce bolognaise",
+        "price": 100,
+        "count": 6
+      },
+      {
+        "id": 6,
+        "title": "green beans salad",
+        "price": 80,
+        "count": 17
+      }
+    ]
+  }

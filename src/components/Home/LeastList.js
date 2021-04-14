@@ -13,20 +13,26 @@ const useStyles = makeStyles((theme) => ({
       },
 }));
 
-const LeastList = ({posts}) => {
+const LeastList = ({orders}) => {
 
     const classes = useStyles();
+    orders.sort((a, b) => parseFloat(b.count) - parseFloat(a.count));
 
-    posts.sort((a, b) => parseFloat(b.count) - parseFloat(a.count));
-
+    const pickThree = orders.filter((order, index) => index < 3);
         return (
             <List component="nav" className={classes.root} aria-label="contacts" style={{border:'1px solid #eee'}}>
-            {posts.map(post => 
-                <ListItem button key={post.id}>
+                <span 
+                style={{
+                    fontSize:'20px',width:'100%',
+                    minHeight: '30px',display:'flex',
+                    justifyContent:'center',backgroundColor:'#9932CC',
+                    color:'white' ,fontWeight:'bold'}}>Hot Dish!!</span>
+            {pickThree.map(order => 
+                <ListItem button key={order.id}>
                     <ListItemIcon>
                     <StarIcon/>
                     </ListItemIcon>
-                    <ListItemText primary={post.color}/>
+                    <ListItemText primary={order.title}/>
                 </ListItem>
             )}
             </List>

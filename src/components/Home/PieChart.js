@@ -12,7 +12,7 @@ const PieChart = ({error, isPending, posts}) => {
   const fetchdata = () => {
     if (posts) {
         for(let post of posts){
-        labelsList.push(post.color);
+        labelsList.push(post.title);
         datasList.push(post.count);
       };
     }
@@ -21,7 +21,7 @@ const PieChart = ({error, isPending, posts}) => {
     setDataToChart({
       labels: labelsList,
       datasets: [{
-      label: '# of Votes',
+      label: 'count',
       data: datasList,
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -46,10 +46,7 @@ const PieChart = ({error, isPending, posts}) => {
   },[posts]);
 
   return (
-        <div className="pie col s6"
-        style={{
-                marginTop: '3%'
-              }}>
+        <div className="pie">
            <div className='header' style={{textAlign: 'center'}}>
             <h3 className='title'>Doughnut Chart</h3>
           </div>
@@ -57,9 +54,15 @@ const PieChart = ({error, isPending, posts}) => {
         { isPending && <div className="center-align">
             <h3>Loading...</h3>
         </div> }
-          {posts && <Doughnut data={dataToChart} 
-         
-          />}
+          {posts && <Doughnut data={dataToChart}  
+          options={{
+          responsive: true,
+          maintainAspectRatio: true,
+          legend:{
+            display: true,
+            position: "right"
+          }
+        }}/>}
         </div>
     );
 }

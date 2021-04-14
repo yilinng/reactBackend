@@ -25,7 +25,7 @@ const HorizontalBarChart = ({error, isPending, posts}) => {
   const fetchdata = () => {
     if (posts) {
         for(let post of posts){
-        labelsList.push(post.color);
+        labelsList.push(post.title);
         datasList.push(post.count);
       };
     }
@@ -34,7 +34,7 @@ const HorizontalBarChart = ({error, isPending, posts}) => {
     setDataToChart({
       labels: labelsList,
       datasets: [{
-      label: '# of Votes',
+      label: 'count',
       data: datasList,
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
