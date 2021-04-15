@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import orderList from './../data/order.json';
+import AllMenu from './Home/AllMenu';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +23,10 @@ const Home = () => {
     const classes = useStyles();
     //const { err, isPendings, data: posts } = useFetch('http://localhost:5000/posts')
     const matches = useMediaQuery('(min-width:600px)');
+    //get all item
     const orders = orderList.posts;
+    //pick six item
+    const pickSix = orders.filter((order, index) => index < 6);
   return (
     <div className={classes.root}>
       <Grid container 
@@ -37,16 +41,22 @@ const Home = () => {
           alignItems="center"
           className={classes.control}
         >
-          <Grid item xs={12} md={4}>
+        {orders &&  
+        <Grid item xs={12} md={4}>
             <div style={{ border:'1px solid #eee', padding:'5px'}}>
-              <PieChart posts={orders}/>
+              <PieChart posts={pickSix}/>
             </div>        
-          </Grid>
+        </Grid>
+        }  
+         
 
-          <Grid item xs={9} md={4}
-          style={ matches ? { margin:'3% 1%'} : {margin:'1% auto'}}>
-              {orders && <LeastList orders={orders}/>}
-          </Grid>
+        {orders && 
+         <Grid item xs={9} md={4}
+         style={ matches ? { margin:'3% 1%'} : {margin:'1% auto'}}>
+             {orders && <LeastList orders={orders}/>}
+         </Grid>
+        }
+         
         <Grid
           container
           direction="row"
@@ -54,13 +64,20 @@ const Home = () => {
           alignItems="center"
           className={classes.control}
         >  
-          <Grid item xs={11} md={4}>
-            <HorizontalBarChart posts={orders}/>
-          </Grid>
 
-          <Grid item xs={9} md={4}>
-            {orders && <LeastList orders={orders}/>}
-          </Grid>
+        {orders && 
+          <Grid item xs={11} md={4}>
+          <HorizontalBarChart posts={pickSix}/>
+        </Grid>
+        }
+
+        {orders && 
+        <Grid item xs={9} md={4}
+          style={ matches ? { margin:'3% 1%'} : {marginRight:'35%'}}
+          >
+            <AllMenu posts={orders}/>
+        </Grid>
+        }  
 
         </Grid>
         </Grid>

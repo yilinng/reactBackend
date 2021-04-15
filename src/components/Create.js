@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import UpdateItem from "./create/UpdateItem";
@@ -35,10 +35,12 @@ const Create = () => {
     })
   }
 
+  /*
   useEffect(() => {
     console.log(items);
   }, [items])
-  
+  */
+
   return (
     
     <Grid container 
