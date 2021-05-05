@@ -12,6 +12,14 @@ const UpdateItem = (props) => {
        "mushroom",
     ]);
 
+    const styles = {
+       input:{
+        width:"150px",
+        height:"30px",
+        marginRight:"5px"
+       }
+      };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setItems([...items, newItem]);
@@ -19,15 +27,14 @@ const UpdateItem = (props) => {
     }
 
     useEffect(() => {
-        //console.log(items);
         props.onAdd(items);
     },[items, props]);
 
     return(
         <div className="upItem" style={{margin:"5% auto"}}>
             <form onSubmit={handleSubmit}> 
-                <input type="text" value={newItem} onChange={(e)=>setNewItem(e.target.value)} required/>
-                <button>add new ingredient</button>
+                <input style={styles.input} type="text" value={newItem} onChange={(e)=>setNewItem(e.target.value)} required/>
+                <button className="addIngredient">add new ingredient</button>
             </form>
         </div>
     )  

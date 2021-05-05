@@ -1,7 +1,6 @@
 {
   "posts": [
     {
-      "id": 1,
       "title": "pizza margherita",
       "price": 200,
       "ingredients": [
@@ -9,10 +8,10 @@
         "cheese",
         "basil"
       ],
-      "count": 1
+      "count": 1,
+      "id": 1
     },
     {
-      "id": 2,
       "title": "pizza with italian sausage",
       "price": 210,
       "ingredients": [
@@ -20,10 +19,10 @@
         "ricotta cheese",
         "basil"
       ],
-      "count": 1
+      "count": 1,
+      "id": 2
     },
     {
-      "id": 3,
       "title": "pizza with ricotta cheese",
       "price": 220,
       "ingredients": [
@@ -31,10 +30,10 @@
         "cheese",
         "basil"
       ],
-      "count": 1
+      "count": 1,
+      "id": 3
     },
     {
-      "id": 4,
       "title": "pasta and bacon in cream",
       "price": 110,
       "ingredients": [
@@ -42,10 +41,10 @@
         "corn",
         "tomato"
       ],
-      "count": 1
+      "count": 1,
+      "id": 4
     },
     {
-      "id": 5,
       "title": "pasta and sauce bolognaise",
       "price": 100,
       "ingredients": [
@@ -53,10 +52,10 @@
         "tomato",
         "onion"
       ],
-      "count": 1
+      "count": 1,
+      "id": 5
     },
     {
-      "id": 6,
       "title": "green beans salad",
       "price": 80,
       "ingredients": [
@@ -64,7 +63,27 @@
         "egg",
         "hemp seeds"
       ],
-      "count": 1
+      "count": 1,
+      "id": 6
+    },
+    {
+      "title": "spicy chicken",
+      "price": "170",
+      "ingredients": [
+        "chicken"
+      ],
+      "count": 1,
+      "id": 7
+    },
+    {
+      "title": "black Tea",
+      "price": "20",
+      "ingredients": [
+        "blackTea",
+        "sugar"
+      ],
+      "count": 1,
+      "id": 8
     }
   ]
 }

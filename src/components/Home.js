@@ -1,4 +1,4 @@
-//import useFetch from "./../useFetch";
+import useFetch from "./../useFetch";
 import PieChart from './Home/PieChart';
 import LeastList from "./Home/LeastList";
 import HorizontalBarChart from "./Home/HorizontalBarChart";
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
     const classes = useStyles();
-    //const { err, isPendings, data: posts } = useFetch('http://localhost:5000/posts')
+    const { err, isPendings, data: posts } = useFetch('http://localhost:5000/posts')
     const matches = useMediaQuery('(min-width:600px)');
     //get all item
     const orders = orderList.posts;
@@ -67,16 +67,18 @@ const Home = () => {
 
         {orders && 
           <Grid item xs={11} md={4}>
-          <HorizontalBarChart posts={pickSix}/>
+          <HorizontalBarChart orders={pickSix}/>
         </Grid>
         }
 
-        {orders && 
+        {!isPendings ? 
         <Grid item xs={9} md={4}
           style={ matches ? { margin:'3% 1%'} : {marginRight:'35%'}}
           >
-            <AllMenu posts={orders}/>
+            <AllMenu posts={posts}/>
         </Grid>
+        :
+        <div>{err}</div>
         }  
 
         </Grid>

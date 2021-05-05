@@ -14,7 +14,7 @@ const options = {
 }
 
 
-const HorizontalBarChart = ({posts}) => {
+const HorizontalBarChart = ({orders}) => {
 
   const [dataToChart, setDataToChart] = useState({});
 
@@ -23,10 +23,10 @@ const HorizontalBarChart = ({posts}) => {
     let datasList = [];
 
   const fetchdata = () => {
-    if (posts) {
-        for(let post of posts){
-        labelsList.push(post.title);
-        datasList.push(post.count);
+    if (orders) {
+        for(let order of orders){
+        labelsList.push(order.title);
+        datasList.push(order.count);
       };
     }
   };
@@ -56,11 +56,11 @@ const HorizontalBarChart = ({posts}) => {
       }]
     });
     fetchdata();
-  },[posts]);
+  },[orders]);
 
   return (
     <div className='horizontal'>
-      {posts && <HorizontalBar data={dataToChart} options={options}/>}
+      {orders && <HorizontalBar data={dataToChart} options={options}/>}
     </div>
   );
 

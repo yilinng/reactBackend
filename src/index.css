@@ -6,3 +6,63 @@
   font-family: "Quicksand";
   color: #333;
 }
+.upItem .addIngredient {
+  padding:10px;
+  font-size:15px;
+  font-weight:bold;
+  background-color:forestgreen;
+  color:#eee;
+  border:none; 
+  cursor:pointer; 
+}
+.upItem .addIngredient:hover {
+  background-color :white;
+  color:forestgreen;
+  border: 1px solid black; 
+}
+
+.create .addbtn {
+  margin-top: 10%;
+  padding: 10px 10px; 
+  font-size: 20px;
+  font-weight: bold; 
+  background-color:darkblue;
+  color:pink;
+  border: none; 
+  cursor: pointer;
+}
+
+.create .addbtn:hover{
+  background-color: pink;
+  color:darkblue;
+}
+
+.generalSpan{
+  height: 20px;
+  width: 50px;
+  font-size: 15px; 
+  border: 1px solid gray;
+  padding: 5px;
+  margin: 2px;
+  text-align: center;
+}
+
+.hugSpan{
+  width: auto;
+  height: 25px;
+  font-size: 15px; 
+  border: 1px solid white;
+  padding: 5px;
+  margin: 1px;
+  text-align: center;
+  background-color: #eee;
+}
+
+.signBtn {
+  background-color: violet;
+  color:#eee;
+  font-size: 20px;
+  font-weight: bold;
+  border:none;
+  cursor: pointer;
+}
