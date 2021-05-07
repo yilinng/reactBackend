@@ -10,14 +10,6 @@ const Create = () => {
   const [items, setItems] = useState([]);
   const history = useHistory();
 
-  const styles ={
-    selected:{
-      display:'grid',
-      gridTemplateColumns: '1fr 1fr 1fr', 
-      width:'272px',
-      height:'95px'
-    }
-  }
   const onAdd = (formState) => {
     //console.log('I will submit my ChildForm Input State: ' + formState);
     setItems(formState);
@@ -82,7 +74,7 @@ const Create = () => {
           style={{lineHeight: '2em' ,fontSize: '20px'}}
         />
           <label style={{fontSize:'30px'}}>ingredients:</label>
-          <span>use ctrl key to multiple option</span>  
+          <span>use ctrl key to multiple option(version: desktop )</span>  
           <select multiple={true} value={ingredients} onChange={(e)=> handleSelected(e)} size="5">
             {items.length ? items.map((item, index) => 
                 <option
@@ -96,13 +88,13 @@ const Create = () => {
             <option>not option</option>
             }
           </select>
-          <div className="selected" style={styles.selected}>
+          <div className="selected">
           {ingredients.length ? (
             ingredients.map((item, index) => 
               <span className={item.length > 6 ? 'hugSpan': 'generalSpan'} key={index}>{item}</span>
             )
           ):(
-            <span style={{fontSize:'15px'}}>notselect</span>
+            <span style={{fontSize:'25px',margin:'auto'}}>notselect</span>
           )}
           </div>
         <button className="addbtn">Add</button>

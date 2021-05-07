@@ -6,6 +6,116 @@
   font-family: "Quicksand";
   color: #333;
 }
+
+.header {
+  overflow: hidden;
+  background-color: #6633FF;
+  padding: 10px;
+}
+
+.header a {
+  float: left;
+  color: #eee;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.header a.logo {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.header .headerRight{
+  float: right;
+}
+
+.header .sideBar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #eee;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.header .sideBar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.header .sideBar a:hover {
+  color: #f1f1f1;
+}
+
+.header .sideIcon {
+  display: none;
+}
+
+.header .sideIcon svg {
+  max-width: 20px;
+  height: 20px;
+}
+
+.home {
+  margin: 0 10%;
+  display: grid;
+  grid-template-columns: 500px 100px;
+  gap: 20px;
+}
+
+@media screen and (max-width:768px) and (min-width:600px){
+  .home {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header .headerRight{
+   display: none;
+  }
+
+  .header .sideIcon {
+    position: absolute;
+    display: inline;
+    right: 0;
+    top: 20px;
+  }
+
+  .home {
+    display: block;
+    margin: 15px; 
+  }
+
+}
+
+ .create .selected{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; 
+  width: 280px;
+  height: 95px;
+  overflow-y: scroll;
+  margin-top: 50px;
+  border: 1px solid black; 
+ }
+
+ .create select:focus{
+    border: 5px solid lightblue;
+ }
+
+
 .upItem .addIngredient {
   padding:10px;
   font-size:15px;
@@ -49,13 +159,14 @@
 
 .hugSpan{
   width: auto;
-  height: 25px;
+  height: 50px;
   font-size: 15px; 
   border: 1px solid white;
-  padding: 5px;
+  padding: 1px;
   margin: 1px;
   text-align: center;
   background-color: #eee;
+
 }
 
 .signBtn {
@@ -65,4 +176,132 @@
   font-weight: bold;
   border:none;
   cursor: pointer;
+}
+
+.allMenu {
+  width: 300px; 
+  height: 250px; 
+  border: 1px solid #eee;
+  overflow-y: scroll;
+}
+
+.allMenu .title {
+  font-size: 30px; 
+  color: blue;
+  font-weight: bolder ;
+  display: flex;
+  justify-content: center;
+}
+
+.allMenu .itemColumn {
+  cursor: pointer;
+  display: grid;
+  text-align: center;
+}
+
+.allMenu .itemColumn:hover{
+  background-color: #eee;
+}
+
+.allMenu .itemColumn .link {
+  text-decoration: none;
+}
+
+
+.post-details {
+  display: flex;
+  justify-content: center;
+}
+
+.post-details div {
+  margin: 10px 0;
+}
+
+.post-details .price {
+  font-size: 20px;
+}
+
+.post-details .ingredients {
+  display: block;
+  font-size: 20px;
+  width: 300px;
+  height: auto;
+}
+
+.post-details .ingredients .ingredientsName {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.post-details .ingredients .itemList {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1em;
+}
+
+.post-details .ingredients .item {
+  font-size: 18px;
+  border: 1px solid black;
+  text-align: center; 
+}
+
+.post-details .priceColumn {
+  display: flex;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.post-details .priceColumn .price {
+  margin:auto;
+}
+
+.post-details .deleteBtn {
+  padding: 10px; 
+  font-size: 17px; 
+  background-color: #DC143C; 
+  color: #eee; 
+  border: none;
+  font-weight: bold;
+}
+
+.post-details .deleteBtn:hover {
+  background-color: #eee;
+  color: #DC143C;
+}
+
+.post-details .backBtn {
+  margin-left: 25px;
+  font-weight: 700;
+}
+
+.hotList{
+  display: block;
+  width: 300px;
+  height: auto;
+  border: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.hotList .hotTitle {
+  font-size: 25px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  color: palevioletred;
+}
+
+.hotList .dishList {
+  display: grid;
+  text-align: center;
+  font-size: 18px;
+}
+
+.hotList .dishList .link {
+  text-decoration: none;
+  margin: 5px 0px;
+}
+
+.hotList .dishList .link:hover {
+  background-color: #eee;
+  font-weight: 500;
 }

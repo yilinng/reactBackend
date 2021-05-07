@@ -10,6 +10,9 @@ const UpdateItem = (props) => {
        "egg",
        "basil",
        "mushroom",
+       "Sweet pepper",
+       "Neritic Squid",
+       "Shrimp"
     ]);
 
     const styles = {

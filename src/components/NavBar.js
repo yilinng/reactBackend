@@ -1,165 +1,56 @@
 import { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { auth } from './../firebase';
-import { useHistory } from "react-router-dom";
-import clsx from 'clsx';
-import { makeStyles} from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import MenuIcon from '@material-ui/icons/Menu';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
-import DirectionsBikeOutlinedIcon from '@material-ui/icons/DirectionsBikeOutlined';
-import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
-import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-
-const useStyles = makeStyles({
-  list: {
-    width: 250,
-  },
-  fullList: {
-    width: 'auto',
-  },
-});
-
-const useNavStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
-
 
 const NavBar = ({user}) => {
   const history = useHistory();
-  const matches = useMediaQuery('(min-width:600px)');
-  const classes = useStyles();
-  const classNavs = useNavStyles();
-
-  const [state, setState] = useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
-
+  const [active, setActive] = useState(false);
   const handleToHome= () => {
     auth.signOut();
     history.push('/');
   }
-   const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
-    setState({ ...state, [anchor]: open });
-  };
 
-  const list = (anchor) => (
-    <div
-      className={clsx(classes.list, {
-        [classes.fullList]: anchor === 'top' || anchor === 'bottom',
-      })}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-              { user ? (
-                <>
-                <NavLink to="/create" style={{ textDecoration: 'none', color: 'unset' }} >
-                  <ListItem button>
-                  <ListItemIcon>
-                  <AddOutlinedIcon/>
-                  </ListItemIcon>
-                    <ListItemText primary="Create"/>
-                  </ListItem>
-                </NavLink>
-                <ListItem button onClick={handleToHome}>
-                <ListItemIcon>
-                  <ExitToAppOutlinedIcon/>
-                  </ListItemIcon>
-                  <ListItemText primary="Sign out"/>
-                  </ListItem>
-                </>
-                ):(
-                <>
-                <NavLink to="/signin" style={{ textDecoration: 'none', color: 'unset' }} >
-                  <ListItem button>
-                  <ListItemIcon>
-                  <DirectionsBikeOutlinedIcon/>
-                  </ListItemIcon>
-                    <ListItemText primary="Signin"/>
-                  </ListItem>
-                </NavLink>
-                <NavLink to="/signup" style={{ textDecoration: 'none', color: 'unset' }} >
-                   <ListItem button>
-                   <ListItemIcon>
-                    < PersonAddOutlinedIcon/>
-                  </ListItemIcon>
-                    <ListItemText primary="Signup"/>
-                  </ListItem>
-                </NavLink>
-               </>
-              )}
-      </List>
-    </div>
-  );
-
+  const handleSideBar = () => {
+    setActive(!active)
+  }
+  
     return (
-      
-      <div className={classNavs.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton edge="start" className={classNavs.menuButton} color="inherit" aria-label="menu">
-            {['left'].map((anchor) => (
-            <>
-              <div className="toggleMenu">
-              <MenuIcon fontSize="large" onClick={toggleDrawer(anchor, true)}/>
-              <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
-                {list(anchor)}
-              </Drawer>
-              </div>
-            </>
-          ))}
-          </IconButton>
-          <Typography variant="h6" className={classNavs.title} style={{color:'white'}}>
-          <Link to="/"  style={{color:'white',textDecoration: 'none'}}>pizza backend admin</Link>
-          </Typography>
+      <div className="header">
+        <Link to="/" className="logo">pizza backend admin</Link>
+          <div className="headerRight">
           {user ?(
           <>
-            <Button color="inherit" style={ matches ? { display:'block'} : {display:'none'}}>
-            <Link to="/create"  style={{color:'white',textDecoration: 'none'}}>New one</Link>
-          </Button>
-          <Button color="inherit" style={ matches ? { display:'block'} : {display:'none'}}>
-            <span style={{color:'white'}} onClick={handleToHome}>Sign out</span>
-          </Button>
+            <Link to="/create" >New one</Link>
+            <span onClick={handleToHome}>Sign out</span>
           </>
           ):(
             <>
-            <Button color="inherit" style={ matches ? { display:'block'} : {display:'none'}}>
-            <Link to="/signin"  style={{color:'white',textDecoration: 'none'}}>Sign In</Link>
-          </Button>
-          <Button color="inherit" style={ matches ? { display:'block'} : {display:'none'}}>
-            <Link to="/signup" style={{color:'white',textDecoration: 'none'}}>Sign Up</Link>
-          </Button>
+            <Link to="/signin">Sign In</Link>
+            <Link to="/signup">Sign Up</Link>
             </>
-          )}
-        </Toolbar>
-      </AppBar>
-    </div>
+          )}            
+          </div>
+          
+          <div className="sideBar" style={{ width: active ? '200px': '0px'}}>
+          {user ?(
+          <>
+            <Link to="/create" >New one</Link>
+            <span onClick={handleToHome}>Sign out</span>
+          </>
+          ):(
+            <>
+            <Link to="/signin">Sign In</Link>
+            <Link to="/signup">Sign Up</Link>
+            </>
+          )}            
+          </div>
+
+          <div className="sideIcon" onClick={handleSideBar}>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" stroke="white">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </div>
+      </div>
     );
   }
 

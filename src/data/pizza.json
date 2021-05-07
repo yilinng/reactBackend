@@ -76,14 +76,17 @@
       "id": 7
     },
     {
-      "title": "black Tea",
-      "price": "20",
+      "title": "super seafood pizza",
+      "price": "300",
       "ingredients": [
-        "blackTea",
-        "sugar"
+        "corn",
+        "tomato",
+        "Shrimp",
+        "Sweet pepper",
+        "Neritic Squid"
       ],
       "count": 1,
-      "id": 8
+      "id": 9
     }
   ]
 }
