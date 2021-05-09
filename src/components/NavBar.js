@@ -13,6 +13,10 @@ const NavBar = ({user}) => {
   const handleSideBar = () => {
     setActive(!active)
   }
+
+  const rebackSideBar = () => {
+    setActive(!active);
+  }
   
     return (
       <div className="header">
@@ -31,7 +35,14 @@ const NavBar = ({user}) => {
           )}            
           </div>
           
-          <div className="sideBar" style={{ width: active ? '200px': '0px'}}>
+          <div className="sideBar" 
+            style={{ width: active ? '200px': '0px'}} 
+            onMouseLeave={rebackSideBar}>
+              <span className="deleteBtn" onClick={rebackSideBar}>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </span>
           {user ?(
           <>
             <Link to="/create" >New one</Link>
