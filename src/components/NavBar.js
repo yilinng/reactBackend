@@ -25,7 +25,7 @@ const NavBar = ({user}) => {
           {user ?(
           <>
             <Link to="/create" >New one</Link>
-            <span onClick={handleToHome}>Sign out</span>
+            <span className="siginOut" onClick={handleToHome}>Sign out</span>
           </>
           ):(
             <>
@@ -36,8 +36,7 @@ const NavBar = ({user}) => {
           </div>
           
           <div className="sideBar" 
-            style={{ width: active ? '200px': '0px'}} 
-            onMouseLeave={rebackSideBar}>
+            style={{ width: active ? '200px': '0px'}} >
               <span className="deleteBtn" onClick={rebackSideBar}>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -46,7 +45,7 @@ const NavBar = ({user}) => {
           {user ?(
           <>
             <Link to="/create" >New one</Link>
-            <span onClick={handleToHome}>Sign out</span>
+            <span className="siginOut" onClick={handleToHome}>Sign out</span>
           </>
           ):(
             <>
